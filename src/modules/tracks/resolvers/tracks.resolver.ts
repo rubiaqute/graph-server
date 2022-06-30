@@ -32,14 +32,14 @@ export class TracksResolver {
         }))
     }
 
-    @Resolver()
-    @ResolveField()
-    async artists(@Parent() track) {
-        const { artistsIds } = track
-        return await Promise.all(artistsIds.map(id => {
-            // return this.artistsService.findOnebyId(id)
-        }))
-    }
+    // @Resolver()
+    // @ResolveField()
+    // async artists(@Parent() track) {
+    //     const { artistsIds } = track
+    //     return await Promise.all(artistsIds.map(id => {
+    //         return this.artistsService.findOnebyId(id)
+    //     }))
+    // }
 
     @Resolver()
     @ResolveField()

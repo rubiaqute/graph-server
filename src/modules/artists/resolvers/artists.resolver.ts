@@ -2,8 +2,9 @@ import { Args, Parent, Query, ResolveField, Resolver } from "@nestjs/graphql";
 import { ArtistsService } from "../../artists/services/artists.service";
 import { BandsService } from "../../bands/services/bands.service";
 import { GenresService } from "../../genres/services/genres.service";
+import { Artist } from '../../../graphql';
 
-@Resolver('Artists')
+@Resolver('Artist')
 export class ArtistsResolver {
     constructor(
         private readonly bandsService: BandsService,
@@ -12,8 +13,9 @@ export class ArtistsResolver {
     ) { }
 
     @Query()
-    async artists() {
-        return this.artistsService.findAll()
+    async artists(limit: number, offset: number) {
+        console.log('resolver')
+        return await this.artistsService.findAll()
     }
 
 }
