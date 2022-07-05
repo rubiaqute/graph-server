@@ -19,24 +19,33 @@ export async function findById(id: string): Promise<Artist> {
 
 export async function addArtist(payload, context): Promise<Artist> {
     if (context.token) {
-        httpService.axiosRef.defaults.headers.common['authorization'] = context.token;
-        const { data } = await httpService.axiosRef.post(`${url}`, payload);
+        const { data } = await httpService.axiosRef.post(`${url}`, payload, {
+            headers: {
+                authorization: context.token
+            }
+        });
         return data
     }
 }
 
 export async function deleteOne(payload, context): Promise<any> {
     if (context.token) {
-        httpService.axiosRef.defaults.headers.common['authorization'] = context.token;
-        const { data } = await httpService.axiosRef.delete(`${url}/${payload.id}`);
+        const { data } = await httpService.axiosRef.delete(`${url}/${payload.id}`, {
+            headers: {
+                authorization: context.token
+            }
+        });
         return data
     }
 }
 
 export async function updateOne(payload, context): Promise<Artist> {
     if (context.token) {
-        httpService.axiosRef.defaults.headers.common['authorization'] = context.token;
-        const { data } = await httpService.axiosRef.put(`${url}/${payload.id}`, payload.artist);
+        const { data } = await httpService.axiosRef.put(`${url}/${payload.id}`, payload.artist, {
+            headers: {
+                authorization: context.token
+            }
+        });
         return data
     }
 }
