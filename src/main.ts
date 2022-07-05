@@ -1,7 +1,5 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { HttpService } from '@nestjs/axios'
-import { AxiosResponse, } from 'axios'
 import * as dotenv from "dotenv";
 dotenv.config({ path: "./.env" });
 
@@ -13,11 +11,5 @@ async function bootstrap() {
 }
 bootstrap();
 
-export async function findAll() {
-  const httpService = new HttpService()
-
-  const { data } = await httpService.axiosRef.get(process.env.ARTISTS_URL);
-  console.log(data.items)
-  return data.items
-}
-findAll()
+export const artistsUrl = process.env.ARTISTS_URL
+export const usersUrl = process.env.USERS_URL

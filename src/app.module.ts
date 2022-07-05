@@ -2,13 +2,12 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { TracksModule } from './modules/tracks/tracks.module';
-import { ArtistsModule } from './modules/artists/artists.module';
+
 import { HttpModule } from '@nestjs/axios'
 import { GenresModule } from './modules/genres/genres.module';
 import { join } from 'path';
-import { findAll } from './main'
-import { ArtistsResolver } from './modules/artists/resolvers/artists.resolver';
-import { ArtistsService } from './modules/artists/services/artists.service';
+import { ArtistsQueries } from './modules/artists/controller/artists.controller';
+import { UsersQueries } from './modules/users/users.controller';
 
 @Module({
     imports: [
@@ -16,11 +15,16 @@ import { ArtistsService } from './modules/artists/services/artists.service';
             driver: ApolloDriver,
             resolvers: {
                 Query: {
-                    artists: () => findAll(),
+                    ...ArtistsQueries,
+                    ...UsersQueries,
+                },
+                Artist: {
+                    id: (parent) => parent._id
+                },
+                User: {
+                    id: (parent) => parent._id
                 }
             },
-            // resolvers: { ArtistsResolver },
-            // include: [TracksModule, ArtistsModule, GenresModule],
             typePaths: ['./**/*.graphql'],
             debug: true,
             definitions: {

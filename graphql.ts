@@ -19,15 +19,15 @@ export interface Album {
 }
 
 export interface Artist {
-    _id: string;
-    firstName?: Nullable<string>;
-    secondName?: Nullable<string>;
+    id: string;
+    firstName: string;
+    secondName: string;
     middleName?: Nullable<string>;
     birthDate?: Nullable<string>;
     birthPlace?: Nullable<string>;
-    country?: Nullable<string>;
+    country: string;
     bands?: Nullable<Nullable<Band>[]>;
-    instruments?: Nullable<string>;
+    instruments?: Nullable<Nullable<string>[]>;
 }
 
 export interface IQuery {
@@ -35,6 +35,7 @@ export interface IQuery {
     artist(id?: Nullable<string>): Nullable<Artist> | Promise<Nullable<Artist>>;
     tracks(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Track>[]> | Promise<Nullable<Nullable<Track>[]>>;
     track(id?: Nullable<string>): Nullable<Track> | Promise<Nullable<Track>>;
+    user(id?: Nullable<string>): Nullable<User> | Promise<Nullable<User>>;
 }
 
 export interface Band {
@@ -61,6 +62,14 @@ export interface Track {
     duration?: Nullable<number>;
     released?: Nullable<number>;
     genres?: Nullable<Nullable<Genre>[]>;
+}
+
+export interface User {
+    id: string;
+    firstName: string;
+    lastName?: Nullable<string>;
+    password: string;
+    email: string;
 }
 
 type Nullable<T> = T | null;
