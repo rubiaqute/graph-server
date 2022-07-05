@@ -5,8 +5,8 @@ import { Artist } from "../controller/artists.controller";
 const httpService = new HttpService()
 const url = artistsUrl || 'http://localhost:3002/v1/artists'
 
-export async function findAll(): Promise<Artist[]> {
-    const { data } = await httpService.axiosRef.get(url);
+export async function findAll(payload): Promise<Artist[]> {
+    const { data } = await httpService.axiosRef.get(url, { params: { limit: payload.limit, offset: payload.offset }, });
 
     return data.items
 }

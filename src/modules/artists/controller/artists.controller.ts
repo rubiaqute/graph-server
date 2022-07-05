@@ -12,7 +12,7 @@ export interface Artist {
     instruments: string[];
 }
 export const ArtistsQueries = {
-    artists: () => findAll(),
+    artists: (empty: null, data) => findAll(data),
     artist: (empty: null, data) => findById(data.id),
 }
 
