@@ -1,4 +1,4 @@
-import { addArtist, deleteOne, findAll, findById, updateOne } from '../service/artists.service';
+import { addArtist, deleteOne, findAll, findByIdArtists, updateOne } from '../service/artists.service';
 export interface Artist {
     _id: string,
     id: string;
@@ -13,7 +13,7 @@ export interface Artist {
 }
 export const ArtistsQueries = {
     artists: (empty: null, data) => findAll(data),
-    artist: (empty: null, data) => findById(data.id),
+    artist: (empty: null, data) => findByIdArtists(data.id),
 }
 
 export const ArtistsMutation = {

@@ -15,7 +15,7 @@ type Query {
   artist(id: String): Artist
 }
 
-type DeleteArtist {
+type DeleteResult {
   deletedCount: Int
   acknowledged: Boolean
 }
@@ -43,7 +43,7 @@ type Mutation {
     instruments: [String]
   ): Artist
 
-  deleteArtist(id: ID!): DeleteArtist
+  deleteArtist(id: ID!): DeleteResult
 
   updateArtist(id: ID!, artist: UpdateArtist): Artist
 }
