@@ -6,8 +6,8 @@ import { TracksModule } from './modules/tracks/tracks.module';
 import { HttpModule } from '@nestjs/axios'
 import { GenresModule } from './modules/genres/genres.module';
 import { join } from 'path';
-import { ArtistsQueries } from './modules/artists/controller/artists.controller';
-import { UsersQueries } from './modules/users/users.controller';
+import { ArtistsMutation, ArtistsQueries } from './modules/artists/controller/artists.controller';
+import { UsersMutations, UsersQueries } from './modules/users/users.controller';
 
 @Module({
     imports: [
@@ -18,12 +18,21 @@ import { UsersQueries } from './modules/users/users.controller';
                     ...ArtistsQueries,
                     ...UsersQueries,
                 },
+                Mutation: {
+                    ...UsersMutations,
+                    ...ArtistsMutation,
+                },
                 Artist: {
                     id: (parent) => parent._id
                 },
                 User: {
                     id: (parent) => parent._id
                 }
+            },
+            context: ({ req }) => {
+                const token = req.headers.authorization || '';
+
+                return { token };
             },
             typePaths: ['./**/*.graphql'],
             debug: true,

@@ -16,3 +16,27 @@ export async function findById(id: string): Promise<Artist> {
 
     return data
 }
+
+export async function addArtist(payload, context): Promise<Artist> {
+    if (context.token) {
+        httpService.axiosRef.defaults.headers.common['authorization'] = context.token;
+        const { data } = await httpService.axiosRef.post(`${url}`, payload);
+        return data
+    }
+}
+
+export async function deleteOne(payload, context): Promise<any> {
+    if (context.token) {
+        httpService.axiosRef.defaults.headers.common['authorization'] = context.token;
+        const { data } = await httpService.axiosRef.delete(`${url}/${payload.id}`);
+        return data
+    }
+}
+
+export async function updateOne(payload, context): Promise<Artist> {
+    if (context.token) {
+        httpService.axiosRef.defaults.headers.common['authorization'] = context.token;
+        const { data } = await httpService.axiosRef.put(`${url}/${payload.id}`, payload.artist);
+        return data
+    }
+}

@@ -11,3 +11,16 @@ export async function findById(id: string): Promise<User> {
 
     return data
 }
+
+export async function login(userData): Promise<string> {
+    console.log(userData.email)
+    const { data } = await httpService.axiosRef.post(`${url}/login`, userData);
+
+    return data
+}
+
+export async function register(user: string): Promise<User> {
+    const { data } = await httpService.axiosRef.post(`${url}/register`, user);
+
+    return data
+}
