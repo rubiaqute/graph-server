@@ -27,6 +27,13 @@ export interface UpdateArtist {
     instruments?: Nullable<Nullable<string>[]>;
 }
 
+export interface UpdateGenre {
+    name?: Nullable<string>;
+    description?: Nullable<string>;
+    country?: Nullable<string>;
+    year?: Nullable<number>;
+}
+
 export interface Album {
     id: string;
     name: string;
@@ -43,8 +50,8 @@ export interface IQuery {
     album(id?: Nullable<string>): Nullable<Album> | Promise<Nullable<Album>>;
     artists(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Artist>[]> | Promise<Nullable<Nullable<Artist>[]>>;
     artist(id?: Nullable<string>): Nullable<Artist> | Promise<Nullable<Artist>>;
-    tracks(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Track>[]> | Promise<Nullable<Nullable<Track>[]>>;
-    track(id?: Nullable<string>): Nullable<Track> | Promise<Nullable<Track>>;
+    genres(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Genre>[]> | Promise<Nullable<Nullable<Genre>[]>>;
+    genre(id?: Nullable<string>): Nullable<Genre> | Promise<Nullable<Genre>>;
     user(id?: Nullable<string>): Nullable<User> | Promise<Nullable<User>>;
     jwt(email: string, password: string): Nullable<Token> | Promise<Nullable<Token>>;
 }
@@ -56,6 +63,9 @@ export interface IMutation {
     createArtist(firstName: string, secondName: string, country: string, middleName?: Nullable<string>, birthDate?: Nullable<string>, birthPlace?: Nullable<string>, bandsIds?: Nullable<Nullable<string>[]>, instruments?: Nullable<Nullable<string>[]>): Nullable<Artist> | Promise<Nullable<Artist>>;
     deleteArtist(id: string): Nullable<DeleteResult> | Promise<Nullable<DeleteResult>>;
     updateArtist(id: string, artist?: Nullable<UpdateArtist>): Nullable<Artist> | Promise<Nullable<Artist>>;
+    createGenre(name: string, description?: Nullable<string>, country?: Nullable<string>, year?: Nullable<number>): Nullable<Genre> | Promise<Nullable<Genre>>;
+    deleteGenre(id: string): Nullable<DeleteResult> | Promise<Nullable<DeleteResult>>;
+    updateGenre(id: string, genre?: Nullable<UpdateGenre>): Nullable<Genre> | Promise<Nullable<Genre>>;
     register(firstName: string, password: string, email: string, lastName?: Nullable<string>): Nullable<User> | Promise<Nullable<User>>;
 }
 
@@ -95,7 +105,8 @@ export interface Genre {
 export interface Track {
     id: string;
     title: string;
-    albums?: Nullable<Nullable<Album>[]>;
+    album?: Nullable<Album>;
+    artists?: Nullable<Nullable<Artist>[]>;
     bands?: Nullable<Nullable<Band>[]>;
     duration?: Nullable<number>;
     released?: Nullable<number>;

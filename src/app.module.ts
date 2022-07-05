@@ -1,14 +1,13 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { TracksModule } from './modules/tracks/tracks.module';
 
 import { HttpModule } from '@nestjs/axios'
-import { GenresModule } from './modules/genres/genres.module';
 import { join } from 'path';
 import { ArtistsMutation, ArtistsQueries } from './modules/artists/controller/artists.controller';
 import { UsersMutations, UsersQueries } from './modules/users/users.controller';
 import { AlbumsMapping, AlbumsMutation, AlbumsQueries } from './modules/albums/albums.controller';
+import { GenresMutation, GenresQueries } from './modules/genres/genres.controller';
 
 @Module({
     imports: [
@@ -19,13 +18,18 @@ import { AlbumsMapping, AlbumsMutation, AlbumsQueries } from './modules/albums/a
                     ...ArtistsQueries,
                     ...UsersQueries,
                     ...AlbumsQueries,
+                    ...GenresQueries,
                 },
                 Mutation: {
                     ...UsersMutations,
                     ...ArtistsMutation,
                     ...AlbumsMutation,
+                    ...GenresMutation
                 },
                 Artist: {
+                    id: (parent) => parent._id
+                },
+                Genre: {
                     id: (parent) => parent._id
                 },
                 Album: {
