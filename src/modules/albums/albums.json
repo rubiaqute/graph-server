@@ -1,11 +1,11 @@
 [
   {
-    "name": "Objection",
-    "released": 2000,
+    "name": "Wind of change",
+    "released": 1988,
     "artistsIds": ["62c4871c0a8509a17074550d"],
-    "bandsIds": [],
-    "trackIds": [],
-    "genresIds": []
+    "bandsIds": ["62c550b18bcad1e33426bf76"],
+    "trackIds": ["62c54484eb6feef2e9c40596"],
+    "genresIds": ["62c4b0bdb7993bb713cdfb91"]
   },
   {
     "firstName": "Simba",

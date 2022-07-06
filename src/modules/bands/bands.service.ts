@@ -21,46 +21,60 @@ const httpService = new HttpService()
 const url = bandsUrl || 'http://localhost:3003/v1/bands'
 
 export async function findAll(payload): Promise<Band[]> {
-    const { data } = await httpService.axiosRef.get(url, { params: { limit: payload.limit, offset: payload.offset }, });
+    try {
+        const { data } = await httpService.axiosRef.get(url, { params: { limit: payload.limit, offset: payload.offset }, });
 
-    return data.items
+        return data.items
+    } catch (e) {
+        throw new Error(e.message)
+    }
 }
 
 export async function findByIdBands(id: string): Promise<Band> {
-    const { data } = await httpService.axiosRef.get(`${url}/${id}`);
+    try {
+        const { data } = await httpService.axiosRef.get(`${url}/${id}`);
 
-    return data
+        return data
+    } catch (e) {
+        throw new Error(e.message)
+    }
 }
 
 export async function addBand(payload, context): Promise<Band> {
-    if (context.token) {
+    try {
         const { data } = await httpService.axiosRef.post(`${url}`, payload, {
             headers: {
                 authorization: context.token
             }
         });
         return data
+    } catch (e) {
+        throw new Error(e.message)
     }
 }
 
 export async function deleteOne(payload, context): Promise<any> {
-    if (context.token) {
+    try {
         const { data } = await httpService.axiosRef.delete(`${url}/${payload.id}`, {
             headers: {
                 authorization: context.token
             }
         });
         return data
+    } catch (e) {
+        throw new Error(e.message)
     }
 }
 
 export async function updateOne(payload, context): Promise<Band> {
-    if (context.token) {
+    try {
         const { data } = await httpService.axiosRef.put(`${url}/${payload.id}`, payload.band, {
             headers: {
                 authorization: context.token
             }
         });
         return data
+    } catch (e) {
+        throw new Error(e.message)
     }
 }

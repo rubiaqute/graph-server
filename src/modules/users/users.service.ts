@@ -13,14 +13,21 @@ export async function findById(id: string): Promise<User> {
 }
 
 export async function login(userData): Promise<string> {
-    console.log(userData.email)
-    const { data } = await httpService.axiosRef.post(`${url}/login`, userData);
+    try {
+        const { data } = await httpService.axiosRef.post(`${url}/login`, userData);
 
-    return data
+        return data
+    } catch (e) {
+        throw new Error(e.message)
+    }
 }
 
 export async function register(user: string): Promise<User> {
-    const { data } = await httpService.axiosRef.post(`${url}/register`, user);
+    try {
+        const { data } = await httpService.axiosRef.post(`${url}/register`, user);
 
-    return data
+        return data
+    } catch (e) {
+        throw new Error(e.message)
+    }
 }

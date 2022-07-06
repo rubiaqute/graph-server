@@ -12,7 +12,7 @@ export interface UpdateAlbum {
     released?: Nullable<number>;
     artistsIds?: Nullable<Nullable<string>[]>;
     bandsIds?: Nullable<Nullable<string>[]>;
-    tracksIds?: Nullable<Nullable<string>[]>;
+    trackIds?: Nullable<Nullable<string>[]>;
     genresIds?: Nullable<Nullable<string>[]>;
 }
 
@@ -85,7 +85,7 @@ export interface IQuery {
 }
 
 export interface IMutation {
-    createAlbum(name: string, released?: Nullable<number>, artistsIds?: Nullable<Nullable<string>[]>, bandsIds?: Nullable<Nullable<string>[]>, tracksIds?: Nullable<Nullable<string>[]>, genresIds?: Nullable<Nullable<string>[]>): Nullable<Album> | Promise<Nullable<Album>>;
+    createAlbum(name: string, released?: Nullable<number>, artistsIds?: Nullable<Nullable<string>[]>, bandsIds?: Nullable<Nullable<string>[]>, trackIds?: Nullable<Nullable<string>[]>, genresIds?: Nullable<Nullable<string>[]>): Nullable<Album> | Promise<Nullable<Album>>;
     deleteAlbum(id: string): Nullable<DeleteResult> | Promise<Nullable<DeleteResult>>;
     updateAlbum(id: string, album?: Nullable<UpdateAlbum>): Nullable<Album> | Promise<Nullable<Album>>;
     createArtist(firstName: string, secondName: string, country: string, middleName?: Nullable<string>, birthDate?: Nullable<string>, birthPlace?: Nullable<string>, bandsIds?: Nullable<Nullable<string>[]>, instruments?: Nullable<Nullable<string>[]>): Nullable<Artist> | Promise<Nullable<Artist>>;

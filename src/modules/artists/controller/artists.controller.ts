@@ -1,3 +1,4 @@
+import { findByIdBands } from '../../bands/bands.service';
 import { addArtist, deleteOne, findAll, findByIdArtists, updateOne } from '../service/artists.service';
 export interface Artist {
     _id: string,
@@ -20,4 +21,9 @@ export const ArtistsMutation = {
     createArtist: (parent, data, context) => addArtist(data, context),
     deleteArtist: (parent, data, context) => deleteOne(data, context),
     updateArtist: (parent, data, context) => updateOne(data, context),
+}
+
+export const ArtistsMapping = {
+    bands: (parent) => parent.bandsIds.map((id) => findByIdBands(id)),
+    id: (parent) => parent._id
 }
