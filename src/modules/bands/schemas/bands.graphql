@@ -1,7 +1,0 @@
-type Band {
-  id: ID!
-  name: String
-  origin: String
-  website: String
-  genres: [Genre]
-}
