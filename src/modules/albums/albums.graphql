@@ -31,7 +31,6 @@ type Mutation {
     bandsIds: [ID]
     tracksIds: [ID]
     genresIds: [ID]
-    image: String
   ): Album
 
   deleteAlbum(id: ID!): DeleteResult

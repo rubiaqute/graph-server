@@ -8,6 +8,7 @@ import { ArtistsMutation, ArtistsQueries } from './modules/artists/controller/ar
 import { UsersMutations, UsersQueries } from './modules/users/users.controller';
 import { AlbumsMapping, AlbumsMutation, AlbumsQueries } from './modules/albums/albums.controller';
 import { GenresMutation, GenresQueries } from './modules/genres/genres.controller';
+import { TracksMapping, TracksMutation, TracksQueries } from './modules/tracks/tracks.controller';
 
 @Module({
     imports: [
@@ -19,12 +20,14 @@ import { GenresMutation, GenresQueries } from './modules/genres/genres.controlle
                     ...UsersQueries,
                     ...AlbumsQueries,
                     ...GenresQueries,
+                    ...TracksQueries
                 },
                 Mutation: {
                     ...UsersMutations,
                     ...ArtistsMutation,
                     ...AlbumsMutation,
-                    ...GenresMutation
+                    ...GenresMutation,
+                    ...TracksMutation
                 },
                 Artist: {
                     id: (parent) => parent._id
@@ -34,6 +37,9 @@ import { GenresMutation, GenresQueries } from './modules/genres/genres.controlle
                 },
                 Album: {
                     ...AlbumsMapping
+                },
+                Track: {
+                    ...TracksMapping
                 },
                 User: {
                     id: (parent) => parent._id
