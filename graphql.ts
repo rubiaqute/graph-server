@@ -76,6 +76,7 @@ export interface IQuery {
     artist(id?: Nullable<string>): Nullable<Artist> | Promise<Nullable<Artist>>;
     bands(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Band>[]> | Promise<Nullable<Nullable<Band>[]>>;
     band(id?: Nullable<string>): Nullable<Band> | Promise<Nullable<Band>>;
+    favourites(): Nullable<Favourites> | Promise<Nullable<Favourites>>;
     genres(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Genre>[]> | Promise<Nullable<Nullable<Genre>[]>>;
     genre(id?: Nullable<string>): Nullable<Genre> | Promise<Nullable<Genre>>;
     tracks(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Track>[]> | Promise<Nullable<Nullable<Track>[]>>;
@@ -94,6 +95,10 @@ export interface IMutation {
     createBand(name?: Nullable<string>, origin?: Nullable<string>, members?: Nullable<Nullable<MemberInput>[]>, website?: Nullable<string>, genresIds?: Nullable<Nullable<string>[]>): Nullable<Band> | Promise<Nullable<Band>>;
     deleteBand(id: string): Nullable<DeleteResult> | Promise<Nullable<DeleteResult>>;
     updateBand(id: string, band?: Nullable<UpdateBand>): Nullable<Band> | Promise<Nullable<Band>>;
+    addTrackToFavourites(trackId?: Nullable<string>): Nullable<Favourites> | Promise<Nullable<Favourites>>;
+    addBandToFavourites(bandId?: Nullable<string>): Nullable<Favourites> | Promise<Nullable<Favourites>>;
+    addArtistToFavourites(artistId?: Nullable<string>): Nullable<Favourites> | Promise<Nullable<Favourites>>;
+    addGenreToFavourites(genreId?: Nullable<string>): Nullable<Favourites> | Promise<Nullable<Favourites>>;
     createGenre(name: string, description?: Nullable<string>, country?: Nullable<string>, year?: Nullable<number>): Nullable<Genre> | Promise<Nullable<Genre>>;
     deleteGenre(id: string): Nullable<DeleteResult> | Promise<Nullable<DeleteResult>>;
     updateGenre(id: string, genre?: Nullable<UpdateGenre>): Nullable<Genre> | Promise<Nullable<Genre>>;
@@ -133,6 +138,15 @@ export interface Member {
     artist?: Nullable<Artist>;
     instrument?: Nullable<string>;
     years?: Nullable<Nullable<string>[]>;
+}
+
+export interface Favourites {
+    id: string;
+    userId?: Nullable<string>;
+    bands?: Nullable<Nullable<Band>[]>;
+    genres?: Nullable<Nullable<Genre>[]>;
+    artists?: Nullable<Nullable<Artist>[]>;
+    tracks?: Nullable<Nullable<Track>[]>;
 }
 
 export interface Genre {

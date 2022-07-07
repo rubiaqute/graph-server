@@ -10,6 +10,7 @@ import { AlbumsMapping, AlbumsMutation, AlbumsQueries } from './modules/albums/a
 import { GenresMutation, GenresQueries } from './modules/genres/genres.controller';
 import { TracksMapping, TracksMutation, TracksQueries } from './modules/tracks/tracks.controller';
 import { BandsMapping, BandsMutation, BandsQueries, MembersMapping } from './modules/bands/bands.contoller';
+import { FavouritesMapping, FavouritesMutation, FavouritesQueries } from './modules/favourites/favourites.controller';
 
 @Module({
     imports: [
@@ -22,7 +23,8 @@ import { BandsMapping, BandsMutation, BandsQueries, MembersMapping } from './mod
                     ...AlbumsQueries,
                     ...GenresQueries,
                     ...TracksQueries,
-                    ...BandsQueries
+                    ...BandsQueries,
+                    ...FavouritesQueries,
                 },
                 Mutation: {
                     ...UsersMutations,
@@ -31,6 +33,7 @@ import { BandsMapping, BandsMutation, BandsQueries, MembersMapping } from './mod
                     ...GenresMutation,
                     ...TracksMutation,
                     ...BandsMutation,
+                    ...FavouritesMutation
                 },
                 Artist: {
                     ...ArtistsMapping
@@ -52,6 +55,9 @@ import { BandsMapping, BandsMutation, BandsQueries, MembersMapping } from './mod
                 },
                 Member: {
                     ...MembersMapping
+                },
+                Favourites: {
+                    ...FavouritesMapping
                 }
             },
             context: ({ req }) => {

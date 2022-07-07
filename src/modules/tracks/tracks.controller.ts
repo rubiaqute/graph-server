@@ -1,5 +1,6 @@
 import { findByIdAlbums } from "../albums/albums.service"
 import { findByIdArtists } from "../artists/service/artists.service"
+import { findByIdBands } from "../bands/bands.service"
 import { findByIdGenre } from "../genres/genres.service"
 import { addTrack, deleteOne, findAll, findByIdTracks, updateOne } from "./tracks.service"
 
@@ -18,6 +19,6 @@ export const TracksMapping = {
     artists: async (parent) => parent.artistsIds.map((id) => findByIdArtists(id)),
     album: async (parent) => findByIdAlbums(parent.albumId),
     genres: (parent) => parent.genresIds.map((id) => findByIdGenre(id)),
-    // bands:
+    bands: (parent) => parent.bandsIds.map((id) => findByIdBands(id)),
     id: (parent) => parent._id
 }
