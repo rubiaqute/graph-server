@@ -17,9 +17,9 @@ export const FavouritesMutation = {
 }
 
 export const FavouritesMapping = {
-    artists: (parent) => parent.artistsIds.map((id) => findByIdArtists(id)),
-    genres: (parent) => parent.genresIds.map((id) => findByIdGenre(id)),
-    tracks: (parent) => parent.tracksIds.map((id) => findByIdTracks(id)),
-    bands: (parent) => parent.bandsIds.map((id) => findByIdBands(id)),
+    artists: (parent) => parent.artistsIds.map((id: string) => findByIdArtists(id)),
+    genres: (parent) => parent.genresIds.map((id: string) => findByIdGenre(id)),
+    tracks: (parent) => parent.tracksIds.map((id: string) => findByIdTracks(id)),
+    bands: (parent) => parent.bandsIds.map((id: string) => findByIdBands(id)),
     id: (parent) => parent._id
 }

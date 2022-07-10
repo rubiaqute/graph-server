@@ -19,5 +19,5 @@ export const BandsMapping = {
 }
 
 export const MembersMapping = {
-    artist: (parent) => findByIdArtists(parent.artist),
+    artist: (parent) => parent.artist && findByIdArtists(parent.artist),
 }

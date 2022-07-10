@@ -1,5 +1,6 @@
 import { HttpService } from '@nestjs/axios'
-import { favouritesUrl } from '../../main'
+import * as dotenv from "dotenv";
+dotenv.config({ path: "./../../.env" });
 
 interface Favorite {
     _id: string;
@@ -19,7 +20,7 @@ enum FavTypes {
 }
 
 const httpService = new HttpService()
-const url = favouritesUrl || 'http://localhost:3007/v1/favourites'
+const url = process.env.FAVOURITES_URL || 'http://localhost:3007/v1/favourites'
 
 export async function findFavourites(payload, context): Promise<Favorite> {
     try {
@@ -33,16 +34,6 @@ export async function findFavourites(payload, context): Promise<Favorite> {
         throw new Error(e.message)
     }
 }
-
-// export async function findByIdAlbums(id: string): Promise<Album> {
-//     try {
-//         const { data } = await httpService.axiosRef.get(`${url}/${id}`);
-
-//         return data
-//     } catch (e) {
-//         throw new Error(e.message)
-//     }
-// }
 
 export async function addTrackToFavorite(payload, context): Promise<Favorite> {
     try {

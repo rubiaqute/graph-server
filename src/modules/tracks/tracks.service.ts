@@ -1,5 +1,6 @@
 import { HttpService } from '@nestjs/axios'
-import { tracksUrl } from '../../main';
+import * as dotenv from "dotenv";
+dotenv.config({ path: "./../../.env" });
 
 interface Track {
     _id: string;
@@ -14,7 +15,7 @@ interface Track {
 }
 
 const httpService = new HttpService()
-const url = tracksUrl || 'http://localhost:3006/v1/tracks'
+const url = process.env.TRACKS_URL || 'http://localhost:3006/v1/tracks'
 
 export async function findAll(payload): Promise<Track[]> {
     try {

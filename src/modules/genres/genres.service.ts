@@ -1,5 +1,6 @@
 import { HttpService } from '@nestjs/axios'
-import { genresUrl } from '../../main';
+import * as dotenv from "dotenv";
+dotenv.config({ path: "./../../.env" });
 
 interface Genre {
     _id: string;
@@ -11,7 +12,7 @@ interface Genre {
 }
 
 const httpService = new HttpService()
-const url = genresUrl || 'http://localhost:3001/v1/genres'
+const url = process.env.GENRES_URL || 'http://localhost:3001/v1/genres'
 
 export async function findAll(payload): Promise<Genre[]> {
     try {

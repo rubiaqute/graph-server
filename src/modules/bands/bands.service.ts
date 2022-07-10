@@ -1,5 +1,6 @@
 import { HttpService } from '@nestjs/axios'
-import { bandsUrl } from '../../main';
+import * as dotenv from "dotenv";
+dotenv.config({ path: "./../../.env" });
 
 interface Band {
     _id: string;
@@ -18,7 +19,7 @@ interface Member {
 }
 
 const httpService = new HttpService()
-const url = bandsUrl || 'http://localhost:3003/v1/bands'
+const url = process.env.BANDS_URL || 'http://localhost:3003/v1/bands'
 
 export async function findAll(payload): Promise<Band[]> {
     try {

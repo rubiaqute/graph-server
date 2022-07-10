@@ -16,9 +16,9 @@ export const TracksMutation = {
 }
 
 export const TracksMapping = {
-    artists: async (parent) => parent.artistsIds.map((id) => findByIdArtists(id)),
-    album: async (parent) => findByIdAlbums(parent.albumId),
-    genres: (parent) => parent.genresIds.map((id) => findByIdGenre(id)),
-    bands: (parent) => parent.bandsIds.map((id) => findByIdBands(id)),
+    artists: async (parent) => parent.artistsIds.map((id: string) => findByIdArtists(id)),
+    album: (parent) => parent.albumId && findByIdAlbums(parent.albumId),
+    genres: (parent) => parent.genresIds.map((id: string) => findByIdGenre(id)),
+    bands: (parent) => parent.bandsIds.map((id: string) => findByIdBands(id)),
     id: (parent) => parent._id
 }

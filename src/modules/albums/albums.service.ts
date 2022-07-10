@@ -1,5 +1,6 @@
 import { HttpService } from '@nestjs/axios'
-import { albumsUrl } from '../../main';
+import * as dotenv from "dotenv";
+dotenv.config({ path: "./../../.env" });
 
 interface Album {
     _id: string;
@@ -14,7 +15,7 @@ interface Album {
 }
 
 const httpService = new HttpService()
-const url = albumsUrl || 'http://localhost:3005/v1/albums'
+const url = process.env.ALBUMS_URL || 'http://localhost:3005/v1/albums'
 
 export async function findAll(payload): Promise<Album[]> {
     try {

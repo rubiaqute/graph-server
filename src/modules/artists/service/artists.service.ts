@@ -1,9 +1,10 @@
-import { artistsUrl } from "../../../main";
 import { HttpService } from '@nestjs/axios'
 import { Artist } from "../controller/artists.controller";
+import * as dotenv from "dotenv";
+dotenv.config({ path: "./../../../.env" });
 
 const httpService = new HttpService()
-const url = artistsUrl || 'http://localhost:3002/v1/artists'
+const url = process.env.ARTISTS_URL || 'http://localhost:3002/v1/artists'
 
 export async function findAll(payload): Promise<Artist[]> {
     try {

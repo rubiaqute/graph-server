@@ -1,9 +1,10 @@
 import { HttpService } from '@nestjs/axios'
-import { usersUrl } from '../../main';
 import { User } from "./users.controller";
+import * as dotenv from "dotenv";
+dotenv.config({ path: "./.env" });
 
 const httpService = new HttpService()
-const url = usersUrl || 'http://localhost:3004/v1/users'
+const url = process.env.USERS_URL || 'http://localhost:3004/v1/users'
 
 
 export async function findById(id: string): Promise<User> {
