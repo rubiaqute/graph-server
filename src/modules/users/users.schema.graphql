@@ -1,0 +1,25 @@
+type User {
+  id: ID!
+  firstName: String!
+  lastName: String
+  password: String!
+  email: String!
+}
+
+type Token {
+  jwt: String!
+}
+
+type Query {
+  user(id: String): User
+  jwt(email: String!, password: String!): Token
+}
+
+type Mutation {
+  register(
+    firstName: String!
+    password: String!
+    email: String!
+    lastName: String
+  ): User
+}

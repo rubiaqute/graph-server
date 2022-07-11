@@ -1,0 +1,18 @@
+[
+  {
+    "firstName": "Elle",
+    "secondName": "Fitz",
+    "middleName": "Solo",
+    "birthDate": "11.06.1988",
+    "birthPlace": "Moscow",
+    "country": "Russia",
+    "bands": ["62c550708bcad1e33426bf74"],
+    "instruments": ["drums", "guitar"]
+  },
+  {
+    "id": 11,
+    "firstName": "Simba",
+    "secondName": "Paula",
+    "country": "Russia"
+  }
+]
