@@ -1,0 +1,17 @@
+{
+  "name": "Viagra",
+  "origin": "Russia",
+  "members": [
+    {
+      "artist": "62c4251481e2d8524f69968f",
+      "instrument": "guitar",
+      "years": [2000, 2001]
+    },
+    {
+      "artist": "62c4251481e2d8524f699690",
+      "years": [2002, 2003]
+    }
+  ],
+  "website": "https://ru.wikipedia.org/wiki/%D0%92%D0%98%D0%90_%D0%93%D1%80%D0%B0",
+  "genresIds": ["62c52214b7993bb713cdfb94"]
+}
